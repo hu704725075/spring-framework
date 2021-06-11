@@ -43,6 +43,7 @@ import org.springframework.util.MultiValueMap;
  * @see AnnotationMetadata
  * @see MethodMetadata
  */
+// 注解元数据接口
 public interface AnnotatedTypeMetadata {
 
 	/**

@@ -59,6 +59,14 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.config.ConfigurableListableBeanFactory
  * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()
  */
+/**
+ * 功能描述: <br>
+ * 〈自动注入工厂类  不对外暴露  spring框架特用〉
+ * @Param:
+ * @Return:
+ * @Author: huyongpeng
+ * @Date: 2021/6/10 4:32 下午
+ */
 public interface AutowireCapableBeanFactory extends BeanFactory {
 
 	/**
@@ -68,6 +76,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #autowire
 	 * @see #autowireBeanProperties
 	 */
+	// 不注入
 	int AUTOWIRE_NO = 0;
 
 	/**
@@ -77,6 +86,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #autowire
 	 * @see #autowireBeanProperties
 	 */
+	// 依据名称注入
 	int AUTOWIRE_BY_NAME = 1;
 
 	/**
@@ -86,6 +96,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #autowire
 	 * @see #autowireBeanProperties
 	 */
+	// 依据类型注入
 	int AUTOWIRE_BY_TYPE = 2;
 
 	/**
@@ -94,6 +105,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #createBean
 	 * @see #autowire
 	 */
+	// 依据构造器注入
 	int AUTOWIRE_CONSTRUCTOR = 3;
 
 	/**
@@ -117,6 +129,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #applyBeanPostProcessorsBeforeInitialization(Object, String)
 	 * @see #applyBeanPostProcessorsAfterInitialization(Object, String)
 	 */
+
 	String ORIGINAL_INSTANCE_SUFFIX = ".ORIGINAL";
 
 
@@ -136,6 +149,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @return the new bean instance
 	 * @throws BeansException if instantiation or wiring failed
 	 */
+	//完全实例化bean 走完bean的生命周期(如调用后置处理器等) 此方法并不意味着by-name或者by-type方式的自动装配
 	<T> T createBean(Class<T> beanClass) throws BeansException;
 
 	/**
@@ -191,6 +205,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	 * @see #AUTOWIRE_BY_TYPE
 	 * @see #AUTOWIRE_CONSTRUCTOR
 	 */
+	// 以指定的自动注入方式实例化bean
 	Object createBean(Class<?> beanClass, int autowireMode, boolean dependencyCheck) throws BeansException;
 
 	/**
